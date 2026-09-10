@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Автоматизации умного дома: конкретные сценарии, выгруженные из работающей системы.">
+<style>:root{color-scheme:dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Топ автоматизаций</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Golos+Text:wght@400;500;600&family=PT+Sans+Narrow:wght@400;700&display=swap">
+
+<style>
+:root{
+  --bg:#15181B; --card:#232A2F; --card2:#1C2226; --frame:#2C343A;
+  --brass:#C8A24A; --brassHi:#E8C87F;
+  --ink:#ECEFEA; --muted:#AFB8B1; --dim:#8E9891; --rail:#4A545B;
+  --ask:#6FB3D8; --off:#D0644F;
+  --head:"Bitter",Georgia,serif;
+  --body:"Golos Text","Segoe UI",system-ui,sans-serif;
+  --data:"PT Sans Narrow","Arial Narrow",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:16.5px; line-height:1.65;
+  overflow-wrap:break-word; overflow-x:clip; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brassHi)}
+:focus-visible{outline:2px solid var(--brass); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.wrap{max-width:940px; margin:0 auto; padding:0 20px}
+.col{max-width:66ch}
+h1,h2,h3{font-family:var(--head); margin:0; line-height:1.2; text-wrap:balance}
+h1{font-size:clamp(2rem,5.6vw,3rem); font-weight:700; letter-spacing:-.01em}
+h2{font-size:clamp(1.35rem,3.2vw,1.8rem); font-weight:700}
+h3{font-size:1.05rem; font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--data); font-size:.86rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--brass)}
+
+/* шапка */
+.plate{border-bottom:1px solid var(--rail); background:#0F1214}
+.plate .wrap{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:baseline;
+  padding:12px 20px}
+.plate .mark{font-family:var(--data); font-weight:700; font-size:1rem;
+  letter-spacing:.34em; text-transform:uppercase; color:var(--brass)}
+.plate .sub{font-family:var(--data); font-size:.9rem; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--dim)}
+
+header.hero{padding:46px 0 30px}
+header.hero .lede{margin-top:18px; font-size:1.1rem; color:var(--muted)}
+
+/* счётчики */
+.board{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border:1px solid var(--rail); border-radius:3px; overflow:hidden; margin-top:30px}
+.board div{padding:15px 17px; border-right:1px solid var(--rail); background:var(--card2)}
+.board div:last-child{border-right:none}
+.board b{display:block; font-family:var(--data); font-size:2rem; font-weight:700;
+  line-height:1; color:var(--brass); font-variant-numeric:tabular-nums}
+.board span{display:block; margin-top:5px; font-size:.9rem; color:var(--muted); line-height:1.4}
+
+section{padding:38px 0 6px}
+.sec-head{display:flex; flex-direction:column; gap:8px; margin-bottom:22px}
+.sec-head p{color:var(--muted); font-size:1.02rem}
+
+/* карточка автоматизации — раскрывается */
+.items{display:flex; flex-direction:column; gap:12px}
+details.item{border:1px solid var(--rail); border-radius:4px; background:var(--card);
+  overflow:hidden}
+details.item[open]{border-color:var(--brass)}
+details.item summary{
+  list-style:none; cursor:pointer; padding:15px 18px;
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:4px 14px;
+  align-items:start;
+}
+details.item summary::-webkit-details-marker{display:none}
+.tag{font-family:var(--data); font-size:.82rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; padding:3px 8px; border-radius:2px; white-space:nowrap;
+  margin-top:2px; background:var(--frame); color:var(--muted)}
+.tag.ask{background:#1B2E3A; color:var(--ask)}
+.tag.off{background:#33201C; color:var(--off)}
+.tag.depo{background:#31281440; color:var(--brassHi); border:1px solid #6b5624}
+.item .name{font-family:var(--head); font-weight:700; font-size:1.04rem; min-width:0}
+.item .name em{display:block; font-family:var(--body); font-style:normal;
+  font-weight:400; font-size:.94rem; color:var(--muted); margin-top:3px; line-height:1.5}
+.chev{font-family:var(--data); color:var(--dim); font-size:1.2rem; line-height:1;
+  margin-top:4px; transition:transform .18s}
+details.item[open] .chev{transform:rotate(90deg); color:var(--brass)}
+.body{padding:0 18px 17px; border-top:1px solid var(--rail); margin-top:2px; padding-top:14px}
+.body p{color:var(--muted); font-size:.98rem}
+.body p + p{margin-top:9px}
+.body b{color:var(--ink); font-weight:600}
+
+/* реплика уведомления */
+.push{margin:12px 0 0; border-left:3px solid var(--ask); background:var(--card2);
+  padding:11px 14px; border-radius:0 3px 3px 0}
+.push .t{font-weight:600; color:var(--ink); font-size:.97rem}
+.push .m{color:var(--muted); font-size:.94rem; margin-top:3px}
+.push .btns{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.push .btns span{font-family:var(--data); font-size:.88rem; letter-spacing:.05em;
+  border:1px solid var(--rail); border-radius:3px; padding:3px 10px; color:var(--brassHi)}
+
+/* список показателей */
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.chips span{font-family:var(--data); font-size:.95rem; letter-spacing:.03em;
+  border:1px solid var(--rail); border-radius:3px; padding:4px 11px; color:var(--muted);
+  background:var(--card2)}
+
+.note{margin-top:26px; border-left:3px solid var(--off); padding:2px 0 2px 18px}
+.note h3{color:var(--off)}
+.note p{color:var(--muted); margin-top:8px}
+.note p b{color:var(--ink); font-weight:600}
+
+footer{margin-top:44px; padding:22px 0 46px; border-top:1px solid var(--rail);
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 20px;
+  font-family:var(--data); font-size:.9rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--dim)}
+</style>
+
+<div class="plate">
+  <div class="wrap">
+    <span class="mark">Депо</span>
+    <span class="sub">Приложение к презентации · дом Томера · 10 сентября 2026</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero col">
+    <span class="eyebrow">Перегон 01 · подробности</span>
+    <h1>Топ автоматизаций</h1>
+    <p class="lede">В презентации на умный дом отведено пять слайдов — там только принцип.
+      Здесь то, что за ним: конкретные сценарии, которые работают в квартире прямо сейчас,
+      с настоящими текстами уведомлений и настоящей логикой. Ничего придуманного для
+      красоты — всё выгружено из работающей системы.</p>
+  </header>
+
+  <div class="board">
+    <div><b>91</b><span>автоматизация</span></div>
+    <div><b>171</b><span>сценарий</span></div>
+    <div><b>31</b><span>устройство в сети Zigbee</span></div>
+    <div><b>1932</b><span>сущности под управлением</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head col">
+      <span class="eyebrow">Главный приём</span>
+      <h2>Дом спрашивает, а не решает за тебя</h2>
+      <p>Самая частая ошибка умного дома — он «умничает»: гасит свет, когда ты замер над
+        книгой, выключает кондиционер, когда ты только лёг. Поэтому здесь другой принцип:
+        в спорной ситуации дом присылает уведомление с кнопками и <b>ждёт</b>. Молчание
+        трактуется как «делай как обычно» — то есть неответ никогда не ломает привычное
+        поведение.</p>
+    </div>
+
+    <div class="items">
+
+      <details class="item" open>
+        <summary>
+          <span class="tag ask">спросить</span>
+          <span class="name">Климат в гостиной перед сном
+            <em>В 22:50 предупреждает, что в 23:00 всё погаснет</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Две автоматизации гасят климат в гостиной в 23:00. За десять минут до этого дом
+            спрашивает, не нужно ли иначе. Ответ <b>придерживает обе</b> — не отменяет, а
+            откладывает.</p>
+          <div class="push">
+            <div class="t">В 23:00 выключу климат в гостиной</div>
+            <div class="m">Если сидишь допоздна — скажи, придержу.</div>
+            <div class="btns"><span>Оставить</span><span>Выключить в 00:30</span></div>
+          </div>
+          <p>Не ответил — в 23:00 гаснет, как обычно. Ответил «в 00:30» — 23:00 пропускается,
+            и ровно в 00:30 приходит подтверждение: «климат в гостиной выключен, как просили».
+            В 23:05 срабатывает <b>страховка</b>: возвращает обе автоматизации на место, чтобы
+            разовое решение не отключило их навсегда. Это и есть разница между «сценарием» и
+            «сценарием, который не сломается через неделю».</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag ask">спросить</span>
+          <span class="name">Ушёл из дома, а дом остался работать
+            <em>Через 10 минут после ухода проверяет, что осталось включённым</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Триггер — телефон покинул домашнюю зону. Через десять минут дом смотрит, что
+            работает, и <b>ведёт себя по-разному в зависимости от того, есть ли кто-то дома</b>.</p>
+          <div class="push">
+            <div class="t">Ты ушёл, а дом остался работать</div>
+            <div class="m">Включено: свет в гостиной, кондиционер, телевизор.</div>
+            <div class="btns"><span>Выключить всё</span><span>Оставить</span></div>
+          </div>
+          <p>Дома пусто и ответа нет 15 минут — гасит всё сам, включая бойлер, и присылает
+            отчёт: «Погашено: свет в гостиной, кондиционер». Дома есть движение — только
+            спрашивает и ничего не трогает: там может сидеть жена.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag ask">спросить</span>
+          <span class="name">Окно открыто, а кондиционер работает
+            <em>Не выключает молча — уточняет</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Датчик открытия на окне в спальне плюс работающий кондиционер — классическая
+            ситуация «греем улицу». Но бывает и намеренно: проветрить пять минут. Поэтому
+            дом спрашивает, а не выключает.</p>
+          <div class="push">
+            <div class="t">Окно в спальне открыто, мазган работает</div>
+            <div class="btns"><span>Сейчас закрою</span><span>Выключить мазган</span></div>
+          </div>
+          <p>Такая же развилка стоит на мазгане в спальне перед 08:00 — гасить его к подъёму
+            или оставить.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">механика</span>
+          <span class="name">Одна автоматизация ловит все нажатия
+            <em>Кнопки в уведомлениях приходят одним общим событием</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Тонкость, из-за которой такие сценарии обычно и не делают. Телефон присылает
+            нажатие кнопки <b>одним и тем же событием</b> для всех уведомлений сразу —
+            различить их можно только по идентификатору кнопки.</p>
+          <p>Поэтому все нажатия ловит одна автоматизация-диспетчер и разветвляется внутри.
+            Добавляешь новый сценарий с кнопками — добавляешь ветку сюда. В описании самой
+            автоматизации это записано прямым текстом, чтобы через полгода не гадать.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head col">
+      <span class="eyebrow">Дальше — по хозяйству</span>
+      <h2>Остальное, что крутится каждый день</h2>
+      <p>Тут нет ничего эффектного поодиночке. Эффект даёт количество: свет, климат, звук
+        и присутствие перестают требовать внимания вообще.</p>
+    </div>
+
+    <div class="items">
+
+      <details class="item">
+        <summary>
+          <span class="tag">свет</span>
+          <span class="name">Нормализация света по восьми комнатам
+            <em>Каждая комната приводится к одному понятному состоянию</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Балкон, ванная, гардероб, гостиная, коридор, кухня, спальня, туалет — на каждую
+            свой сценарий. Смысл в том, что после любой ручной возни (кто-то крутил яркость,
+            дёргал выключатель, оставил ночник) комната возвращается к предсказуемому виду.</p>
+          <p>Сюда же — датчики движения в семи комнатах, физические выключатели на четыре
+            кнопки и режим <b>Party light</b> отдельно для каждой комнаты и для всего дома
+            разом.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">климат</span>
+          <span class="name">Кондиционеры, обогреватели и бойлер
+            <em>Включение по расписанию, выключение по уходу и по времени</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Кондиционер в спальне включается и выключается по своим правилам, климат в
+            гостиной — по своим, обогрев ванной и гардероба связан в одну пару. Отдельно
+            пишется <b>время последнего выключения</b> — чтобы не гонять технику включением
+            через минуту после остановки.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">звук</span>
+          <span class="name">Колонки, которые ведут себя прилично
+            <em>Громкость возвращается на место, ассистента слышно</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>В гостиной, на кухне, в спальне и в гардеробе громкость <b>сама возвращается к
+            обычной</b> после того, как музыка кончилась — иначе следующее включение бьёт по
+            ушам на вчерашней громкости.</p>
+          <p>Когда к дому обращаются голосом, музыка приглушается, чтобы ответ было слышно.
+            В гостиной звук переключается между колонкой и телевизором. Если колонка
+            отвалилась от сети — приходит уведомление, а не тишина.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">присутствие</span>
+          <span class="name">Кто дома
+            <em>Отдельные сценарии на приход и уход каждого</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>«Томер приходит», «Томер уходит», «Крис приходит», «Крис уходит» — четыре разных
+            сценария, потому что реакция дома на них разная. Плюс уведомление о том, что жена
+            подъезжает, — чтобы включить свет и климат заранее, а не когда она уже в дверях.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">утро</span>
+          <span class="name">Восход, закат и будильники
+            <em>Дом живёт по солнцу, а не по фиксированным часам</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Отдельные сценарии на восход и на закат — свет включается не «в 18:00», а когда
+            реально темнеет, и это работает круглый год без правок. Будильники у Томера и у
+            Крис разные и запускают разные последовательности; сценарий «Доброе утро»
+            поднимает дом целиком.</p>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <span class="tag">быт</span>
+          <span class="name">Протечки, вода и сирена
+            <em>Скучные вещи, ради которых всё и затевалось</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p>Датчики протечки в туалете, на кухне и на балконе. Учёт расхода воды. Сирена,
+            которая включается по тревоге. Ночная перезагрузка системы, чтобы не копились
+            подвисания. Это никогда не показывают в роликах про умный дом, но именно это
+            окупает его первым же несработавшим потопом.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head col">
+      <span class="eyebrow">Стык двух систем</span>
+      <h2>Депо внутри дома</h2>
+      <p>Тот самый круг из презентации, только с этой стороны. Дом не просто отдаёт события
+        в базу — он ещё и <b>читает из неё</b>. Раз в 15 минут одна автоматизация обновляет
+        пятнадцать показателей, и они становятся обычными датчиками, доступными и на панели,
+        и голосом.</p>
+    </div>
+    <div class="chips">
+      <span>траты за месяц</span><span>категории трат</span><span>магазины</span>
+      <span>последние покупки</span><span>задачи на сегодня</span><span>сегодняшний день</span>
+      <span>здоровье за неделю</span><span>тренировки</span><span>аптечка</span>
+      <span>последние просмотры</span><span>сериалы в процессе</span>
+      <span>идеи по проектам</span><span>наблюдения</span><span>состояние контуров</span>
+    </div>
+    <p class="col" style="margin-top:18px; color:var(--muted); font-size:.98rem">
+      Обновление именно по расписанию, а не постоянно: данные в облачной базе меняются
+      раз в час-день, и опрашивать их каждые тридцать секунд — впустую жечь и сеть, и базу.
+      Практический смысл — можно спросить у дома голосом, сколько потрачено в этом месяце
+      или какие лекарства есть в аптечке, и он ответит из настоящей базы.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head col">
+      <span class="eyebrow">Голос</span>
+      <h2>Дом слышит, не выходя в интернет</h2>
+      <p>Распознавание речи, синтез голоса и языковая модель работают <b>на самой коробке</b>.
+        Ни одна фраза, сказанная дома, не уезжает на чужой сервер.</p>
+    </div>
+    <div class="items">
+      <details class="item">
+        <summary>
+          <span class="tag">голос</span>
+          <span class="name">Что для этого стоит
+            <em>Три отдельные программы вместо одной облачной колонки</em></span>
+          <span class="chev">›</span>
+        </summary>
+        <div class="body">
+          <p><b>Speech-to-Phrase</b> — быстрое распознавание заранее известных команд, работает
+            почти мгновенно. <b>Whisper</b> — распознавание свободной речи, когда фраза не
+            укладывается в шаблон. <b>Piper</b> — синтез ответа голосом. <b>Ollama</b> —
+            языковая модель для случаев, когда надо не команду выполнить, а понять смысл.</p>
+          <p>Кондиционером в спальне можно управлять голосом; при обращении к дому музыка
+            автоматически приглушается.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="note col">
+      <h3>И то, что мы выключили</h3>
+      <p>Раз уж речь про голос — честная часть. Дом умел <b>заговорить сам</b>: комментировать
+        события, зачитывать сводку, отвечать на действия без обращения к нему. Технически это
+        работало.</p>
+      <p>Выключено <b>10 сентября 2026 года</b>, в день сборки этой презентации. Утром колонка
+        в спальне заговорила после будильника, и прервать её было нечем. Проактивная речь
+        снята целиком: пакет отключён, задача снята, сущности удалены.</p>
+      <p>Оставили это здесь намеренно. Умный дом ломается не там, где не хватает функций, а
+        там, где функция есть, но у человека нет над ней власти. Говорящая колонка без
+        кнопки «замолчи» — не фича, а сосед за стеной.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Депо · приложение к презентации о стеке</span>
+    <span>Выгружено из работающей системы 10.09.2026</span>
+  </footer>
+</div>
+
+</body>
+</html>
